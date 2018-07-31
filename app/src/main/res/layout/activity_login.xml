@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="50dp"
+                    android:src="@drawable/logo"></ImageView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/idText"
+                    android:background="@drawable/border"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:hint="아이디"
+                    android:padding="10dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFCCCCCC">
+
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/passwordText"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border"
+                    android:drawableLeft="@drawable/ic_lock_black_24dp"
+                    android:drawableStart="@drawable/ic_lock_black_24dp"
+                    android:hint="비밀번호"
+                    android:padding="10dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFCCCCCC">
+
+
+                </EditText>
+
+                <Button
+                    android:id="@+id/loginButton"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="로그인"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    android:textColor="#ffffff">
+
+
+                </Button>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/registerButton"
+                    android:text="회원가입"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp">
+                </TextView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="간편 로그인" />//커스텀할 버튼이미지는 drawable에 있습니다!
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:src="@drawable/facebooklogin"
+                    android:id="@+id/facebooklogin">
+                </ImageView>
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:src="@drawable/kakaologin"
+                    android:id="@+id/kakaologin">
+                </ImageView>
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="2dp"
+                    android:src="@drawable/naverlogin"
+                    android:id="@+id/naverlogin">
+                </ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/paidDate"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:text="7.18"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:padding="10dp"
+        android:layout_marginLeft="5dp"
+
+        >
+    </TextView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="100dp"
+        android:layout_width="wrap_content">
+     <TextView
+        android:id="@+id/paidCafeName"
+        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:text="스타벅스"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:padding="10dp"
+
+
+        >
+     </TextView>
+     <TextView
+        android:id="@+id/paidMenu"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="아이스 아메리카노"
+        android:textSize="15dp"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+
+        >
+      </TextView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/paidPrice"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="10dp"
+        android:text="5000원"
+        android:textColor="#000000"
+        android:textSize="15dp"
+
+        ></TextView>
+
+
+
+</LinearLayout>
