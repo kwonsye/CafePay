@@ -247,11 +247,11 @@ public class CouponActivity extends AppCompatActivity {
                 Intent intent=new Intent(CouponActivity.this,MyFullCouponActivity.class);
                 intent.putExtra("userId", userId);
 
-                intent.putExtra("myStarbucksCopon",starbucksCouponCount);
-                intent.putExtra("myEdiyaCopon",ediyaCouponCount);
-                intent.putExtra("myHollysCopon",hollysCouponCount);
-                intent.putExtra("myAngelinusCopon",angelinusCouponCount);
-                intent.putExtra("myTomnTomsCopon",tomntomsCouponCount);
+                intent.putExtra("myStarbucksCoupon",starbucksCouponCount);
+                intent.putExtra("myEdiyaCoupon",ediyaCouponCount);
+                intent.putExtra("myHollysCoupon",hollysCouponCount);
+                intent.putExtra("myAngelinusCoupon",angelinusCouponCount);
+                intent.putExtra("myTomnTomsCoupon",tomntomsCouponCount);
 
                 startActivity(intent);
             }
