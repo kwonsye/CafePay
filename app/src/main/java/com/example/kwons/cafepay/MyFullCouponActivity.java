@@ -27,12 +27,6 @@ public class MyFullCouponActivity extends AppCompatActivity {
         listView=(ListView)findViewById(R.id.myFullCouponListView);
         myFullCouponList=new ArrayList<FullCoupon>();
 
-        //디비연동전 예시데이터
-        //해당 카페의 쿠폰 개수받아서 개수만큼 for문 돌리기
-        myFullCouponList.add(new FullCoupon("스타벅스"));
-        myFullCouponList.add(new FullCoupon("탐앤탐스"));
-        myFullCouponList.add(new FullCoupon("엔젤리너스"));
-
         //서버연결 후
 
         retrofit=new Retrofit.Builder()
@@ -40,10 +34,37 @@ public class MyFullCouponActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         couponService=retrofit.create(CouponService.class);
+
         //사용자아이디 받기
         Intent intent = getIntent();
         final String userId = intent.getExtras().getString("userId");
 
+        //사용자의 쿠폰개수 받기
+        int myStarbucksCouponCount=intent.getExtras().getInt("myStarbucksCoupon");
+        int myEdiyaCouponCount=intent.getExtras().getInt("myEdiyaCoupon");
+        int myHollysCouponCount=intent.getExtras().getInt("myHollysCoupon");
+        int myAngelinusCouponCount=intent.getExtras().getInt("myAngelinusCoupon");
+        int myTomnTomsCouponCount=intent.getExtras().getInt("myTomnTomsCoupon");
+
+        for(int couponCount=1;couponCount<=myStarbucksCouponCount;couponCount++){
+            myFullCouponList.add(new FullCoupon("스타벅스"));
+        }
+
+        for(int couponCount=1;couponCount<=myEdiyaCouponCount;couponCount++){
+            myFullCouponList.add(new FullCoupon("이디야"));
+        }
+
+        for(int couponCount=1;couponCount<=myHollysCouponCount;couponCount++){
+            myFullCouponList.add(new FullCoupon("할리스"));
+        }
+
+        for(int couponCount=1;couponCount<=myAngelinusCouponCount;couponCount++){
+            myFullCouponList.add(new FullCoupon("엔젤리너스"));
+        }
+
+        for(int couponCount=1;couponCount<=myTomnTomsCouponCount;couponCount++){
+            myFullCouponList.add(new FullCoupon("탐앤탐스"));
+        }
 
 
 

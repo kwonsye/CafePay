@@ -18,6 +18,13 @@ public class CouponActivity extends AppCompatActivity {
 
     Retrofit retrofit;
     CouponService couponService;
+
+    static int starbucksCouponCount;
+    static int ediyaCouponCount;
+    static int angelinusCouponCount;
+    static int hollysCouponCount;
+    static int tomntomsCouponCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +40,6 @@ public class CouponActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String userId = intent.getExtras().getString("userId");
 
-        //초기에는 스타벅스버튼을 누른것으로 초기화
 
         //스타벅스버튼을 눌렀을때
         final ImageView starbucksCouponButton=findViewById(R.id.starbucksCouponButton);
@@ -48,6 +54,14 @@ public class CouponActivity extends AppCompatActivity {
                             try {
 
                                 int starbucksStampCount = response.body().starbucksStampCount;
+                                starbucksCouponCount=starbucksStampCount/10;
+
+                                for (int stampCount = 1; stampCount <= starbucksStampCount%10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView)findViewById(id);
+
+                                    Img.setImageResource(R.drawable.starbucks_icon);    //출력
+                                }
 
 
                             } catch (Exception e) { e.printStackTrace(); }
@@ -65,6 +79,9 @@ public class CouponActivity extends AppCompatActivity {
             }
         });
 
+        //초기에는 스타벅스버튼을 누른것으로 초기화
+        starbucksCouponButton.performClick();
+
         //이디야버튼을 눌렀을때
         ImageView ediyaCouponButton=findViewById(R.id.ediyaCouponButton);
         ediyaCouponButton.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +95,10 @@ public class CouponActivity extends AppCompatActivity {
                             try {
 
                                 int ediyaStampCount = response.body().ediyaStampCount;
-                                for (int i = 1; i <= ediyaStampCount; i++) {
-                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + i, "id", getApplicationContext().getPackageName());
+                                ediyaCouponCount=ediyaStampCount/10;
+
+                                for (int stampCount = 1; stampCount <= ediyaStampCount%10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
                                     ImageView Img = (ImageView)findViewById(id);
 
                                     Img.setImageResource(R.drawable.ediya_icon);    //출력
@@ -113,8 +132,10 @@ public class CouponActivity extends AppCompatActivity {
                             try {
 
                                 int hollysStampCount = response.body().hollysStampCount;
-                                for (int i = 1; i <= hollysStampCount; i++) {
-                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + i, "id", getApplicationContext().getPackageName());
+                                hollysCouponCount=hollysStampCount/10;
+
+                                for (int stampCount = 1; stampCount <= hollysStampCount%10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
                                     ImageView Img = (ImageView)findViewById(id);
 
                                     Img.setImageResource(R.drawable.hollys_icon);    //출력
@@ -149,8 +170,10 @@ public class CouponActivity extends AppCompatActivity {
                             try {
 
                                 int angelinusStampCount = response.body().angelinusStampCount;
-                                for (int i = 1; i <= angelinusStampCount; i++) {
-                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + i, "id", getApplicationContext().getPackageName());
+                                angelinusCouponCount=angelinusStampCount/10;
+
+                                for (int stampCount = 1; stampCount <= angelinusStampCount%10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
                                     ImageView Img = (ImageView)findViewById(id);
 
                                     Img.setImageResource(R.drawable.angelinus_icon);    //출력
@@ -185,8 +208,10 @@ public class CouponActivity extends AppCompatActivity {
                             try {
 
                                 int tomntomsStampCount = response.body().tomntomsStampCount;
-                                for (int i = 1; i <= tomntomsStampCount; i++) {
-                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + i, "id", getApplicationContext().getPackageName());
+                                tomntomsCouponCount=tomntomsStampCount/10;
+
+                                for (int stampCount = 1; stampCount <= tomntomsStampCount%10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
                                     ImageView Img = (ImageView)findViewById(id);
 
                                     Img.setImageResource(R.drawable.tomntoms_icon);    //출력
@@ -221,6 +246,13 @@ public class CouponActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(CouponActivity.this,MyFullCouponActivity.class);
                 intent.putExtra("userId", userId);
+
+                intent.putExtra("myStarbucksCoupon",starbucksCouponCount);
+                intent.putExtra("myEdiyaCoupon",ediyaCouponCount);
+                intent.putExtra("myHollysCoupon",hollysCouponCount);
+                intent.putExtra("myAngelinusCoupon",angelinusCouponCount);
+                intent.putExtra("myTomnTomsCoupon",tomntomsCouponCount);
+
                 startActivity(intent);
             }
         });
