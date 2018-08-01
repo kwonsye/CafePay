@@ -14,7 +14,6 @@ public interface PayItemListService {
     public static final String API_URL="http://phil6641.cafe24.com:9287/";
 
     //1.결제하기
-    //Call <'주고받을 객체'> '함수명' (@Query ('변수 이름') '자료형' '변수 이름')
     @GET("payments")
     Call<PayItem> payValue();
 
