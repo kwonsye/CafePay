@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+                Intent rechargeIntent = new Intent(MainActivity.this, RechargeActivity.class);
+                MainActivity.this.startActivity(rechargeIntent);
             }
         });
         paidText.setOnClickListener(new Button.OnClickListener() {
