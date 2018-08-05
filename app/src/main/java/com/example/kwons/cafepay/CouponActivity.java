@@ -64,7 +64,7 @@ public class CouponActivity extends AppCompatActivity {
                         }
                         else{
                             int statusCode=response.code();
-                            Log.i("Tag","응답코드:"+statusCode);}
+                            Log.i("Coupon액티비티","응답코드:"+statusCode);}
 
                     }
 

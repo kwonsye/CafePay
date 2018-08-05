@@ -43,10 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     List<Users> users = response.body();
                     for (Users user : users) {
-                        if (user.id.toString().equals(userId))
-                            userNameText.setText(user.name.toString()+"님");
+                        if (user.id.toString().equals(userId)) {
+                            userNameText.setText(user.name.toString() + "님");
+                            return;
+                        }
                     }
                 }
+                else{
+                    int statusCode=response.code();
+                    Log.i("Main액티비티","응답코드:"+statusCode);}
             }
 
             @Override
