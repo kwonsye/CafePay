@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         Button tumblerRegisterButton=findViewById(R.id.tumblerRegisterButton);
 
         //로그인액티비티에서 유저아이디 받아오기
-        Intent intent=getIntent();
-        final String userId=intent.getExtras().getString("userId");
+        Intent fromLoginIntent=getIntent();
+        final String userId=fromLoginIntent.getExtras().getString("userId");
 
 
         /**아이디에 해당하는 유저의 이름받아오기*/
@@ -60,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent couponIntent=new Intent(MainActivity.this,CouponActivity.class);
-                MainActivity.this.startActivity(couponIntent);
+                Intent toCouponIntent=new Intent(MainActivity.this,CouponActivity.class);
+                toCouponIntent.putExtra("userId",userId);
+                MainActivity.this.startActivity(toCouponIntent);
 
             }
         });

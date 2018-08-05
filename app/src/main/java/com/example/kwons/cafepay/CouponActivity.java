@@ -32,9 +32,9 @@ public class CouponActivity extends AppCompatActivity {
         //Retrofit
         couponService=RetrofitClient.getClient().create(CouponService.class);
 
-        //사용자아이디 받기
-        Intent intent = getIntent();
-        final String userId = intent.getExtras().getString("userId");
+        //메인액티비티에서 사용자아이디 받기
+        Intent fromMainIntent = getIntent();
+        final String userId = fromMainIntent.getExtras().getString("userId");
 
 
         //스타벅스버튼을 눌렀을때
@@ -70,6 +70,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
                     }
                 });
             }
@@ -110,6 +112,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
                     }
                 });
             }
@@ -147,7 +151,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
-
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
                     }
                 });
             }
@@ -185,6 +190,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
 
                     }
                 });
@@ -223,6 +230,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
 
                     }
                 });

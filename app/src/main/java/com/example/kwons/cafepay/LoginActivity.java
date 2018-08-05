@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final EditText idText=findViewById(R.id.idText);
-                final EditText passwordText=findViewById(R.id.passwordText);
+                final EditText idText=findViewById(R.id.loginIdText);
+                final EditText passwordText=findViewById(R.id.loginPasswordText);
 
                 final String loginId =idText.getText().toString();
                 String loginPassword=passwordText.getText().toString();

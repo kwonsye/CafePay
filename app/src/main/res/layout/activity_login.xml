@@ -36,7 +36,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/idText"
+                    android:id="@+id/loginIdText"
                     android:background="@drawable/border"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 </EditText>
 
                 <EditText
-                    android:id="@+id/passwordText"
+                    android:id="@+id/loginPasswordText"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
