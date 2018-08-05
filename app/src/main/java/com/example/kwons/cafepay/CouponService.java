@@ -11,8 +11,6 @@ import retrofit2.http.Path;
 
 public interface CouponService {
 
-    public static final String API_URL="http://phil6641.cafe24.com:9287/";
-
     //1.카페이름별 스탬프개수 조회
     @GET("coupons/{userId}/count")
     Call<Stamp> getStampCount(@Path("userId") String userId);
