@@ -1,10 +1,13 @@
 package com.example.kwons.cafepay;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -32,8 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         final EditText registerIdText=(EditText)findViewById(R.id.registerIdText);
         Button registerIdCheckButton=(Button)findViewById(R.id.registerIdCheckButton);
-        EditText registerPasswordText=(EditText)findViewById(R.id.registerPasswordText);
-        EditText registerRecheckPasswordText=(EditText)findViewById(R.id.registerRecheckPasswordText);
+        final EditText registerPasswordText=(EditText)findViewById(R.id.registerPasswordText);
+        final TextView registerErrorRecheckPassword=(TextView)findViewById(R.id.registerErrorRecheckPassword);
+        final EditText registerRecheckPasswordText=(EditText)findViewById(R.id.registerRecheckPasswordText);
         EditText registerUserNameText=(EditText)findViewById(R.id.registerUserNameText);
         RadioGroup registerGenderGroup=(RadioGroup)findViewById(R.id.registerGenderGroup);
         RadioButton genderWoman=(RadioButton)findViewById(R.id.genderWoman);
@@ -95,6 +100,31 @@ public class RegisterActivity extends AppCompatActivity {
             }
             }
         );
+
+        /**비밀번호 재확인*/
+        registerRecheckPasswordText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            //비밀번호 재확인에 입력한 내용이 바뀔때마다
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(!registerRecheckPasswordText.toString().equals(registerPasswordText.toString())){
+                    registerErrorRecheckPassword.setText("비밀번호가 동일하지 않습니다.");
+                    registerErrorRecheckPassword.setTextColor(Color.parseColor("#FF0000"));
+                }
+                if(registerRecheckPasswordText.toString().equals(registerPasswordText.toString())){
+                    registerErrorRecheckPassword.setText("비밀번호가 재확인되었습니다.");
+                    registerErrorRecheckPassword.setTextColor(Color.parseColor("#6799FF"));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         Button registerButton=(Button)findViewById(R.id.registerButton);
 
