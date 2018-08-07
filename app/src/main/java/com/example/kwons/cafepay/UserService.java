@@ -18,8 +18,8 @@ public interface UserService {
 
     //2.유저회원가입
     @POST("users")
-    @Headers({"Content-Type: application/json;charset=utf-8"})
-    Call<SignUpUser> postSignUpUser(@Body SignUpUser signUpUser);
+   // @Headers({"Content-Type: application/json;charset=utf-8"})
+    Call<Void> postSignUpUser(@Body SignUpUser signUpUser);
 
     //3.로그인api
     @POST("users/login")

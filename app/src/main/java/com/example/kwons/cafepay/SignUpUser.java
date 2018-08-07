@@ -13,7 +13,7 @@ class SignUpUser {
         this.birth = birth;
 
         if(gender.equals("여성"))
-            this.gender="FM";
+            this.gender="F";
         else if(gender.equals("남성"))
             this.gender="M";
 
@@ -21,4 +21,6 @@ class SignUpUser {
         this.name = name;
         this.password = password;
     }
+
+
 }

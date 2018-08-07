@@ -71,15 +71,63 @@ public class RegisterActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
         spinner.setSelection(0);
 
+
+        registerPasswordText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                validate=false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if (registerPasswordText.getText().toString().length()<6&&registerPasswordText.getText().toString().length()>0) {
+                    registerPasswordText.setError("비밀번호는 6자리 이상이어야 합니다.");
+                }
+            }
+        });
+
         /**아이디 중복체크*/
+
+        //중복체크 후에 아이디를 다시 수정한경우 + 아이디 자리수체크
+        registerIdText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                validate=false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                validate=false;
+                if (registerIdText.getText().toString().length()<6&&registerIdText.getText().toString().length()>0) {
+                    registerIdText.setError("ID는 6자리 이상이어야 합니다.");
+                }
+            }
+        });
 
         registerIdCheckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /**아이디중복체크를 이미 했다면*/
                 if(validate){
+
+                    AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("사용할 수 있는 ID입니다.")
+                            .setPositiveButton("확인",null)
+                            .create()
+                            .show();
                     return;
                 }
+
+
                 /**아이디가 공백이면*/
                 if (TextUtils.isEmpty(registerIdText.getText().toString())) {
                     AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
@@ -91,6 +139,18 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 /**아이디가 공백이 아니면 중복체크 통신*/
                 if(!TextUtils.isEmpty(registerIdText.getText().toString())){
+
+                    //아이디가 6자리이상이 아니면 대화상자띄우기
+                    if(registerIdText.getText().toString().length()<6){
+                        AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
+                        builder.setMessage("ID는 6자리 이상이어야 합니다.")
+                                .setNegativeButton("다시 시도",null)
+                                .create()
+                                .show();
+                        return;
+                    }
+
+                    //아이디가 6자리 이상이면 중복체크통신
                     userService=RetrofitClient.getClient().create(UserService.class);
                     Call<List<Users>> call=userService.getAllUserList();
                     call.enqueue(new Callback<List<Users>>() {
@@ -133,6 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
                 }
+
 
             }
             }
@@ -188,6 +249,26 @@ public class RegisterActivity extends AppCompatActivity {
                             .show();
                     return;
                 }
+                //아이디 자리수 체크
+                if(registerIdText.getText().toString().length()<6){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("아이디는 6자리 이상이어야 합니다.")
+                            .setNegativeButton("다시 시도",null)
+                            .create()
+                            .show();
+                    return;
+                }
+                //비밀번호 자리수 체크
+                if(registerPasswordText.getText().toString().length()<6){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("비밀번호는 6자리 이상이어야 합니다.")
+                            .setNegativeButton("다시 시도",null)
+                            .create()
+                            .show();
+                    return;
+                }
+
+
                 //빈칸이 있다면
                 if(userId.equals("")||userPassword.equals("")||userName.equals("")||userBirthYear.equals("")||userBirthMonth.equals("")||userBirthDate.equals(""))
                 {
@@ -204,10 +285,10 @@ public class RegisterActivity extends AppCompatActivity {
                 //객체생성
                 SignUpUser signUpUser=new SignUpUser(userBirth,userGender,userId,userName,userPassword);
 
-                Call<SignUpUser> call=userService.postSignUpUser(signUpUser);
-                call.enqueue(new Callback<SignUpUser>() {
+                Call<Void> call=userService.postSignUpUser(signUpUser);
+                call.enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<SignUpUser> call, Response<SignUpUser> response) {
+                    public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.isSuccessful()){
                             if(response.code()==200){ /**회원가입에 성공하면*/
 
@@ -233,7 +314,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<SignUpUser> call, Throwable t) {
+                    public void onFailure(Call<Void> call, Throwable t) {
                         /**요청실패*/
                         Log.i("Register액티비티", "통신에러");
                     }
