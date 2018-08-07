@@ -250,7 +250,7 @@ public class CouponActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(CouponActivity.this,MyFullCouponActivity.class);
-                intent.putExtra("userId", userId);
+                //intent.putExtra("userId", userId);
 
                 intent.putExtra("myStarbucksCoupon",starbucksCouponCount);
                 intent.putExtra("myEdiyaCoupon",ediyaCouponCount);

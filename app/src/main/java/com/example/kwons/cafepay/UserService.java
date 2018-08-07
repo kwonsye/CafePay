@@ -5,6 +5,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -17,7 +18,8 @@ public interface UserService {
 
     //2.유저회원가입
     @POST("users")
-    Call<Void> postSignUpUser(@Body SignUpUser signUpUser);
+    @Headers({"Content-Type: application/json;charset=utf-8"})
+    Call<SignUpUser> postSignUpUser(@Body SignUpUser signUpUser);
 
     //3.로그인api
     @POST("users/login")

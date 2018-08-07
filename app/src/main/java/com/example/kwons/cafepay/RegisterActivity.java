@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.SingleLineTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -146,11 +147,11 @@ public class RegisterActivity extends AppCompatActivity {
             //비밀번호 재확인에 입력한 내용이 바뀔때마다
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!registerRecheckPasswordText.toString().equals(registerPasswordText.toString())){
+                if(!charSequence.toString().equals(registerPasswordText.getText().toString())){
                     registerErrorRecheckPassword.setText("비밀번호가 일치하지 않습니다.");
                     registerErrorRecheckPassword.setTextColor(Color.parseColor("#FF0000"));
                 }
-                if(registerRecheckPasswordText.toString().equals(registerPasswordText.toString())){
+                if(charSequence.toString().equals(registerPasswordText.getText().toString())){
                     registerErrorRecheckPassword.setText("비밀번호가 재확인되었습니다.");
                     registerErrorRecheckPassword.setTextColor(Color.parseColor("#6799FF"));
                 }
@@ -159,11 +160,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+
             }
         });
 
         /**회원가입 버튼 클릭했을때*/
-        Button registerButton=(Button)findViewById(R.id.registerButton);
+        Button registerButton=findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new Button.OnClickListener(){
 
@@ -175,7 +177,7 @@ public class RegisterActivity extends AppCompatActivity {
                 userBirthYear=registerBirthYear.getText().toString();
                 userBirthMonth=spinner.getSelectedItem().toString();
                 userBirthDate=registerBirthDate.getText().toString();
-                userBirth=userBirthYear+"/"+userBirthMonth+"/"+userBirthDate;
+                userBirth=userBirthYear+"-"+userBirthMonth+"-"+userBirthDate;
 
                 //아이디 중복체크를 안했다면
                 if(!validate){
@@ -197,15 +199,15 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                /**드디어 서버에 회원가입정보 올리기!*/
+                /**서버에 회원가입정보 올리기*/
                 userService=RetrofitClient.getClient().create(UserService.class);
                 //객체생성
                 SignUpUser signUpUser=new SignUpUser(userBirth,userGender,userId,userName,userPassword);
 
-                Call<Void> call=userService.postSignUpUser(signUpUser);
-                call.enqueue(new Callback<Void>() {
+                Call<SignUpUser> call=userService.postSignUpUser(signUpUser);
+                call.enqueue(new Callback<SignUpUser>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<SignUpUser> call, Response<SignUpUser> response) {
                         if(response.isSuccessful()){
                             if(response.code()==200){ /**회원가입에 성공하면*/
 
@@ -231,7 +233,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<SignUpUser> call, Throwable t) {
                         /**요청실패*/
                         Log.i("Register액티비티", "통신에러");
                     }
