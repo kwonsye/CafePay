@@ -16,7 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CouponActivity extends AppCompatActivity {
 
-    Retrofit retrofit;
     CouponService couponService;
 
     static int starbucksCouponCount;
@@ -30,15 +29,12 @@ public class CouponActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon);
 
-        retrofit=new Retrofit.Builder()
-                .baseUrl(CouponService.API_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        couponService=retrofit.create(CouponService.class);
+        //Retrofit
+        couponService=RetrofitClient.getClient().create(CouponService.class);
 
-        //사용자아이디 받기
-        Intent intent = getIntent();
-        final String userId = intent.getExtras().getString("userId");
+        //메인액티비티에서 사용자아이디 받기
+        Intent fromMainIntent = getIntent();
+        final String userId = fromMainIntent.getExtras().getString("userId");
 
 
         //스타벅스버튼을 눌렀을때
@@ -53,7 +49,7 @@ public class CouponActivity extends AppCompatActivity {
                         if(response.isSuccessful()) {
                             try {
 
-                                int starbucksStampCount = response.body().starbucksStampCount;
+                                int starbucksStampCount =(int) response.body().starbucksStampCount;
                                 starbucksCouponCount=starbucksStampCount/10;
 
                                 for (int stampCount = 1; stampCount <= starbucksStampCount%10; stampCount++) {
@@ -68,12 +64,14 @@ public class CouponActivity extends AppCompatActivity {
                         }
                         else{
                             int statusCode=response.code();
-                            Log.i("Tag","응답코드:"+statusCode);}
+                            Log.i("Coupon액티비티","응답코드:"+statusCode);}
 
                     }
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
                     }
                 });
             }
@@ -94,7 +92,7 @@ public class CouponActivity extends AppCompatActivity {
                         if(response.isSuccessful()) {
                             try {
 
-                                int ediyaStampCount = response.body().ediyaStampCount;
+                                int ediyaStampCount = (int)response.body().ediyaStampCount;
                                 ediyaCouponCount=ediyaStampCount/10;
 
                                 for (int stampCount = 1; stampCount <= ediyaStampCount%10; stampCount++) {
@@ -114,6 +112,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
                     }
                 });
             }
@@ -131,7 +131,7 @@ public class CouponActivity extends AppCompatActivity {
                         if(response.isSuccessful()) {
                             try {
 
-                                int hollysStampCount = response.body().hollysStampCount;
+                                int hollysStampCount = (int)response.body().hollysStampCount;
                                 hollysCouponCount=hollysStampCount/10;
 
                                 for (int stampCount = 1; stampCount <= hollysStampCount%10; stampCount++) {
@@ -151,7 +151,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
-
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
                     }
                 });
             }
@@ -169,7 +170,7 @@ public class CouponActivity extends AppCompatActivity {
                         if(response.isSuccessful()) {
                             try {
 
-                                int angelinusStampCount = response.body().angelinusStampCount;
+                                int angelinusStampCount = (int)response.body().angelinusStampCount;
                                 angelinusCouponCount=angelinusStampCount/10;
 
                                 for (int stampCount = 1; stampCount <= angelinusStampCount%10; stampCount++) {
@@ -189,6 +190,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
 
                     }
                 });
@@ -207,7 +210,7 @@ public class CouponActivity extends AppCompatActivity {
                         if(response.isSuccessful()) {
                             try {
 
-                                int tomntomsStampCount = response.body().tomntomsStampCount;
+                                int tomntomsStampCount = (int)response.body().tomntomsStampCount;
                                 tomntomsCouponCount=tomntomsStampCount/10;
 
                                 for (int stampCount = 1; stampCount <= tomntomsStampCount%10; stampCount++) {
@@ -227,6 +230,8 @@ public class CouponActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Stamp> call, Throwable t) {
+                        /**요청실패*/
+                        Log.i("Coupon액티비티", "통신에러");
 
                     }
                 });
@@ -245,7 +250,7 @@ public class CouponActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(CouponActivity.this,MyFullCouponActivity.class);
-                intent.putExtra("userId", userId);
+                //intent.putExtra("userId", userId);
 
                 intent.putExtra("myStarbucksCoupon",starbucksCouponCount);
                 intent.putExtra("myEdiyaCoupon",ediyaCouponCount);

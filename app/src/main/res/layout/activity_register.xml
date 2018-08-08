@@ -53,7 +53,7 @@
             android:layout_width="300dp"
             android:layout_gravity="center">
             <EditText
-            android:id="@+id/idText"
+            android:id="@+id/registerIdText"
             android:background="@drawable/border"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
@@ -70,6 +70,7 @@
         </EditText>
 
             <Button
+                android:id="@+id/registerIdCheckButton"
                 android:text="중복 확인"
                 android:textSize="10dp"
                 android:textColor="#ffffff"
@@ -93,7 +94,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/passwordText"
+            android:id="@+id/registerPasswordText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -111,6 +112,7 @@
         </EditText>
 
         <TextView
+            android:id="@+id/registerErrorRecheckPassword"
             android:text="비밀번호를 한 번 더 입력해 주세요."
             android:layout_height="wrap_content"
             android:layout_width="300dp"
@@ -121,7 +123,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/recheckText"
+            android:id="@+id/registerRecheckPasswordText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -148,7 +150,7 @@
             android:layout_marginBottom="5dp">
         </TextView>
         <EditText
-            android:id="@+id/userNameText"
+            android:id="@+id/registerUserNameText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -177,14 +179,14 @@
         <RadioGroup
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:id="@+id/genderGroup"
+            android:id="@+id/registerGenderGroup"
             android:orientation="horizontal"
             android:layout_gravity="center">
 
             <RadioButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="여자"
+                android:text="여성"
                 android:id="@+id/genderWoman"
                 android:layout_weight="1"
                 android:checked="true"/>
@@ -192,7 +194,7 @@
             <RadioButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="남자"
+                android:text="남성"
                 android:id="@+id/genderMan"
                 android:layout_weight="1"/>
 
@@ -217,7 +219,7 @@
         >
 
         <EditText
-            android:id="@+id/birthYear"
+            android:id="@+id/registerBirthYear"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -228,7 +230,7 @@
             android:textColorHint="#FFCCCCCC"/>
 
         <Spinner
-            android:id="@+id/birthMonthSpinner"
+            android:id="@+id/registerBirthMonthSpinner"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
@@ -236,7 +238,7 @@
             android:background="@drawable/border"></Spinner>
 
         <EditText
-            android:id="@+id/birthDate"
+            android:id="@+id/registerBirthDate"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:singleLine="true"

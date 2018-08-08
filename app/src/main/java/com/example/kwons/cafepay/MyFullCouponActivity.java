@@ -16,28 +16,20 @@ public class MyFullCouponActivity extends AppCompatActivity {
     private FullCouponAdapter adapter;
     private List<FullCoupon> myFullCouponList;
 
-    Retrofit retrofit;
-    CouponService couponService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_full_coupon);
 
-        listView=(ListView)findViewById(R.id.myFullCouponListView);
+        listView=findViewById(R.id.myFullCouponListView);
         myFullCouponList=new ArrayList<FullCoupon>();
 
-        //서버연결 후
-
-        retrofit=new Retrofit.Builder()
-                .baseUrl(CouponService.API_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        couponService=retrofit.create(CouponService.class);
 
         //사용자아이디 받기
         Intent intent = getIntent();
-        final String userId = intent.getExtras().getString("userId");
+        //final String userId = intent.getExtras().getString("userId");
 
         //사용자의 쿠폰개수 받기
         int myStarbucksCouponCount=intent.getExtras().getInt("myStarbucksCoupon");
