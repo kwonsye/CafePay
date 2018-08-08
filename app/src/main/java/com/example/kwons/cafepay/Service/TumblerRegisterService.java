@@ -1,4 +1,4 @@
-package com.example.kwons.cafepay;
+package com.example.kwons.cafepay.Service;
 
 import org.json.JSONObject;
 

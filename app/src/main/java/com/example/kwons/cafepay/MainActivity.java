@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.kwons.cafepay.Service.UserService;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent rechargeIntent = new Intent(MainActivity.this, RechargeActivity.class);
+                rechargeIntent.putExtra("userId",userId);
                 MainActivity.this.startActivity(rechargeIntent);
             }
         });
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent tumblerRegisterIntent = new Intent(MainActivity.this, TumblerRegisterActivity.class);
+                tumblerRegisterIntent.putExtra("userId",userId);
                 MainActivity.this.startActivity(tumblerRegisterIntent);
 
             }

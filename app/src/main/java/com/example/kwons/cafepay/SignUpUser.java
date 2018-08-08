@@ -1,7 +1,6 @@
 package com.example.kwons.cafepay;
 
-
-class SignUpUser {
+public class SignUpUser {
 
     String birth;
     String gender;

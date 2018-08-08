@@ -58,19 +58,19 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="100dp"
-                    android:text="텀블러 시리얼 넘버"
-                    android:textSize="18dp" />
+                    android:layout_marginTop="90dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="텀블러 시리얼 넘버" />
 
                 <TextView
                     android:id="@+id/tumbler_number_text_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
-                    android:text="등록되지 않음"
-                    android:textSize="15dp" />
+                    android:background="@drawable/border"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
+                    android:text="등록되지 않음" />
 
                 <ImageView
                     android:id="@+id/image_view"
@@ -83,6 +83,9 @@
                     android:id="@+id/generate_qrcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/buttonshape"
+                    android:textColor="#ffffff"
                     android:text="임시 QR코드 생성" />
             </LinearLayout>
 

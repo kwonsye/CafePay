@@ -1,14 +1,9 @@
-package com.example.kwons.cafepay;
+package com.example.kwons.cafepay.Service;
 
-import org.json.JSONObject;
-
-import java.util.List;
+import com.example.kwons.cafepay.PayItemList;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface PayItemListService {

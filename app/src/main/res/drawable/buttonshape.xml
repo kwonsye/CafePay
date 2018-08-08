@@ -3,7 +3,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" android:padding="10dp">
 
-//모서리가 둥근 사각형
+<!--모서리가 둥근 사각형-->
     <solid android:color="@color/colorPrimary"/>
 
     <corners

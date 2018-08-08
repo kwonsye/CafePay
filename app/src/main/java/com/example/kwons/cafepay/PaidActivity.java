@@ -1,17 +1,14 @@
 package com.example.kwons.cafepay;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.io.IOException;
+import com.example.kwons.cafepay.Service.PayItemListService;
+
 import java.util.ArrayList;
-import java.util.List;
 
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;

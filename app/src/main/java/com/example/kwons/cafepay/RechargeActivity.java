@@ -1,5 +1,6 @@
 package com.example.kwons.cafepay;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,38 +9,35 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kwons.cafepay.Service.RechargeService;
+
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RechargeActivity extends AppCompatActivity {
 
-    private final String userId = "choiashyusasnjssin";
     private int point = 600;
     private Button rechargeButton;
     private TextView leftPointTextView;
+    private RechargeService rechargeService;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge);
+        Intent fromLoginIntent = getIntent();
+        final String userId = fromLoginIntent.getExtras().getString("userId");
 
         rechargeButton = findViewById(R.id.rechargeButton);
         leftPointTextView = findViewById(R.id.leftPointTextView);
         rechargeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(RechargeService.API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                rechargeService = RetrofitClient.getClient().create(RechargeService.class);
+                Call<RechargeInfo> callRechargeInfo = rechargeService.recharge(userId, point);
 
-                RechargeService openApiService = retrofit.create(RechargeService.class);
-                Call<RechargeInfo> rechargeService = openApiService.recharge(userId, point);
-
-                rechargeService.enqueue(new Callback<RechargeInfo>() {
+                callRechargeInfo.enqueue(new Callback<RechargeInfo>() {
                     @Override
                     public void onResponse(Call<RechargeInfo> call, retrofit2.Response<RechargeInfo> response) {
                         if (call.isExecuted()) {
@@ -48,6 +46,7 @@ public class RechargeActivity extends AppCompatActivity {
                             leftPointTextView.setText(rechargeInfo.point);
                         }
                     }
+
                     @Override
                     public void onFailure(Call<RechargeInfo> call, Throwable t) {
                         Log.d("Error ", t.getMessage());

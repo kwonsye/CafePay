@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
+import com.example.kwons.cafepay.Service.TumblerRegisterService;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -47,8 +47,9 @@ public class TumblerRegisterActivity extends AppCompatActivity {
     private Button generateQRcodeButton;
     private TextView tumblerNumberTextView;
     private ImageView imgview;
-    private final String userId = "choiashyusasnjssin";
-    private String serial = "ABCDEFG";
+    private String userId;
+    private String serial;
+    private TumblerRegisterService tumblerRegisterService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,9 @@ public class TumblerRegisterActivity extends AppCompatActivity {
                 createDialog();
             }
         });
+
+        Intent fromLoginIntent = getIntent();
+        userId =fromLoginIntent.getExtras().getString("userId");
 
     }
 
@@ -164,14 +168,11 @@ public class TumblerRegisterActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                //serial = result.getContents();
-                serial = "TEST";
+                serial = result.getContents();
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(TumblerRegisterService.API_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                TumblerRegisterService openApiService = retrofit.create(TumblerRegisterService.class);
+                //Retrofit
+                tumblerRegisterService = RetrofitClient.getClient().create(TumblerRegisterService.class);
+
                 JSONObject tumblerInfo = new JSONObject();
                 try {
                     tumblerInfo.put("serial", serial);
@@ -179,7 +180,7 @@ public class TumblerRegisterActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Call<JSONObject> callTumblerService = openApiService.registerTumblerSerialNumber(tumblerInfo);
+                Call<JSONObject> callTumblerService = tumblerRegisterService.registerTumblerSerialNumber(tumblerInfo);
 
                 callTumblerService.enqueue(new Callback<JSONObject>() {
                     @Override

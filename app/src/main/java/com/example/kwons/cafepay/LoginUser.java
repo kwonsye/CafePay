@@ -1,8 +1,6 @@
 package com.example.kwons.cafepay;
 
-import com.google.gson.annotations.SerializedName;
-
-class LoginUser {
+public class LoginUser {
 
     String id;
     String password;

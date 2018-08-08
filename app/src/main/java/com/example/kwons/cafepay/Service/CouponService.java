@@ -1,4 +1,6 @@
-package com.example.kwons.cafepay;
+package com.example.kwons.cafepay.Service;
+
+import com.example.kwons.cafepay.Stamp;
 
 import java.util.List;
 
