@@ -23,7 +23,7 @@ public class MyFullCouponActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_full_coupon);
 
-        listView=findViewById(R.id.myFullCouponListView);
+        listView= (ListView) findViewById(R.id.myFullCouponListView);
         myFullCouponList=new ArrayList<FullCoupon>();
 
 

@@ -38,7 +38,7 @@ public class CouponActivity extends AppCompatActivity {
 
 
         //스타벅스버튼을 눌렀을때
-        final ImageView starbucksCouponButton=findViewById(R.id.starbucksCouponButton);
+        final ImageView starbucksCouponButton= (ImageView) findViewById(R.id.starbucksCouponButton);
         starbucksCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +81,7 @@ public class CouponActivity extends AppCompatActivity {
         starbucksCouponButton.performClick();
 
         //이디야버튼을 눌렀을때
-        ImageView ediyaCouponButton=findViewById(R.id.ediyaCouponButton);
+        ImageView ediyaCouponButton= (ImageView) findViewById(R.id.ediyaCouponButton);
         ediyaCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +120,7 @@ public class CouponActivity extends AppCompatActivity {
         });
 
         //할리스버튼을 눌렀을때
-        ImageView hollysCouponButton=findViewById(R.id.hollysCouponButton);
+        ImageView hollysCouponButton= (ImageView) findViewById(R.id.hollysCouponButton);
         hollysCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,7 +159,7 @@ public class CouponActivity extends AppCompatActivity {
         });
 
         //엔젤리너스버튼을 눌렀을때
-        ImageView angelinusCouponButton=findViewById(R.id.angelinusCouponButton);
+        ImageView angelinusCouponButton= (ImageView) findViewById(R.id.angelinusCouponButton);
         angelinusCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,7 +199,7 @@ public class CouponActivity extends AppCompatActivity {
         });
 
         //탐앤탐즈버튼을 눌렀을때
-        ImageView tomntomsCouponButton=findViewById(R.id.tomntomsCouponButton);
+        ImageView tomntomsCouponButton= (ImageView) findViewById(R.id.tomntomsCouponButton);
         tomntomsCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -243,7 +243,7 @@ public class CouponActivity extends AppCompatActivity {
 
 
 
-        Button myFullCouponButton=findViewById(R.id.myFullCouponButton);
+        Button myFullCouponButton= (Button) findViewById(R.id.myFullCouponButton);
 
         myFullCouponButton.setOnClickListener(new Button.OnClickListener(){
 
