@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView userNameText=findViewById(R.id.userName);
-        TextView couponText=findViewById(R.id.couponButton);
-        TextView rechargeText=findViewById(R.id.rechargeButton);
-        TextView paidText=findViewById(R.id.paidButton);
-        TextView recommendText=findViewById(R.id.recommendButton);
-        Button tumblerRegisterButton=findViewById(R.id.tumblerRegisterButton);
+        final TextView userNameText= (TextView) findViewById(R.id.userName);
+        TextView couponText= (TextView) findViewById(R.id.couponButton);
+        TextView rechargeText= (TextView) findViewById(R.id.rechargeButton);
+        TextView paidText= (TextView) findViewById(R.id.paidButton);
+        TextView recommendText= (TextView) findViewById(R.id.recommendButton);
+        Button tumblerRegisterButton= (Button) findViewById(R.id.tumblerRegisterButton);
 
         //로그인액티비티에서 유저아이디 받아오기
         Intent fromLoginIntent=getIntent();

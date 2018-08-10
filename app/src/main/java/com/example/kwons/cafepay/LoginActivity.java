@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         //Retrofit
         userService=RetrofitClient.getClient().create(UserService.class);
 
-        TextView registerButton=findViewById(R.id.registerButton);
-        Button loginButton=findViewById(R.id.loginButton);
+        TextView registerButton= (TextView) findViewById(R.id.registerButton);
+        Button loginButton= (Button) findViewById(R.id.loginButton);
 
         //회원가입 클릭할때
         registerButton.setOnClickListener(new Button.OnClickListener(){
@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final EditText idText=findViewById(R.id.loginIdText);
-                final EditText passwordText=findViewById(R.id.loginPasswordText);
+                final EditText idText= (EditText) findViewById(R.id.loginIdText);
+                final EditText passwordText= (EditText) findViewById(R.id.loginPasswordText);
 
                 final String loginId =idText.getText().toString();
                 String loginPassword=passwordText.getText().toString();

@@ -45,20 +45,20 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText registerIdText=findViewById(R.id.registerIdText);
-        final Button registerIdCheckButton=findViewById(R.id.registerIdCheckButton);
-        final EditText registerPasswordText=findViewById(R.id.registerPasswordText);
-        final TextView registerErrorRecheckPassword=findViewById(R.id.registerErrorRecheckPassword);
-        final EditText registerRecheckPasswordText=findViewById(R.id.registerRecheckPasswordText);
-        final EditText registerUserNameText=findViewById(R.id.registerUserNameText);
+        final EditText registerIdText= (EditText) findViewById(R.id.registerIdText);
+        final Button registerIdCheckButton= (Button) findViewById(R.id.registerIdCheckButton);
+        final EditText registerPasswordText= (EditText) findViewById(R.id.registerPasswordText);
+        final TextView registerErrorRecheckPassword= (TextView) findViewById(R.id.registerErrorRecheckPassword);
+        final EditText registerRecheckPasswordText= (EditText) findViewById(R.id.registerRecheckPasswordText);
+        final EditText registerUserNameText= (EditText) findViewById(R.id.registerUserNameText);
 
-        RadioGroup registerGenderGroup=findViewById(R.id.registerGenderGroup);
+        RadioGroup registerGenderGroup= (RadioGroup) findViewById(R.id.registerGenderGroup);
         int registerGenderGroupID=registerGenderGroup.getCheckedRadioButtonId();
         userGender=((RadioButton)findViewById(registerGenderGroupID)).getText().toString();
         registerGenderGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton genderButton=findViewById(i);
+                RadioButton genderButton= (RadioButton) findViewById(i);
                 userGender=genderButton.getText().toString();
             }
         });
@@ -226,7 +226,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         /**회원가입 버튼 클릭했을때*/
-        Button registerButton=findViewById(R.id.registerButton);
+        Button registerButton= (Button) findViewById(R.id.registerButton);
 
         registerButton.setOnClickListener(new Button.OnClickListener(){
 
