@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class PaidListAdapter extends BaseAdapter{
+public class PaidListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Paid> paidList;
+    private ArrayList<PayItem> paidList;
 
-    public PaidListAdapter(Context context, List<Paid> paidList) {
+    public PaidListAdapter(Context context, ArrayList<PayItem> paidList) {
         this.context = context;
         this.paidList = paidList;
     }
@@ -36,16 +36,18 @@ public class PaidListAdapter extends BaseAdapter{
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        View v=View.inflate(context,R.layout.paid,null);
-        TextView paidDate=(TextView)v.findViewById(R.id.paidDate);
-        TextView paidCafeName=(TextView)v.findViewById(R.id.paidCafeName);
-        TextView paidPrice=(TextView)v.findViewById(R.id.paidPrice);
+        View v = View.inflate(context, R.layout.paid, null);
+        TextView paidLocation = v.findViewById(R.id.paidLocation);
+        TextView paidCafeName = v.findViewById(R.id.paidCafeName);
+        TextView paidPrice = v.findViewById(R.id.paidPrice);
+        TextView paidMenu = v.findViewById(R.id.paidMenu);
 
-        paidDate.setText(paidList.get(i).paidDate);
-        paidCafeName.setText(paidList.get(i).paidCafeName);
-        paidPrice.setText(paidList.get(i).paidPrice);
+        paidLocation.setText(paidList.get(i).cafeLocation);
+        paidCafeName.setText(paidList.get(i).cafeName);
+        paidPrice.setText(String.valueOf(paidList.get(i).price));
+        paidMenu.setText(paidList.get(i).cafeMenu);
 
-        v.setTag(paidList.get(i).getPaidCafeName());
+        v.setTag(paidList.get(i).id);
 
         return v;
     }

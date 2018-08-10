@@ -3,22 +3,23 @@ package com.example.kwons.cafepay;
 public class Paid {
 
 
-    String paidDate;
+    String paidLocation;
     String paidCafeName;
     String paidPrice;
-
-    public Paid(String paidDate, String paidCafeName, String paidPrice) {
-        this.paidDate = paidDate;
+    String paidMenu;
+    public Paid(String paidLocation, String paidCafeName, String paidPrice, String paidMenu) {
+        this.paidLocation = paidLocation;
         this.paidCafeName = paidCafeName;
         this.paidPrice = paidPrice;
+        this.paidMenu = paidMenu;
     }
 
-    public String getPaidDate() {
-        return paidDate;
+    public String getPaidLocation() {
+        return paidLocation;
     }
 
-    public void setPaidDate(String paidDate) {
-        this.paidDate = paidDate;
+    public void setPaidLocation(String paidLocation) {
+        this.paidLocation = paidLocation;
     }
 
     public String getPaidCafeName() {
@@ -36,4 +37,14 @@ public class Paid {
     public void setPaidPrice(String paidPrice) {
         this.paidPrice = paidPrice;
     }
+
+
+    public String getPaidMenu() {
+        return paidMenu;
+    }
+
+    public void setPaidMenu(String paidMenu) {
+        this.paidMenu = paidMenu;
+    }
+
 }

@@ -5,10 +5,10 @@
     >
 
     <TextView
-        android:id="@+id/paidDate"
+        android:id="@+id/paidLocation"
         android:layout_height="100dp"
         android:layout_width="100dp"
-        android:text="7.18"
+        android:text="서울특별시 강남구 강남대로 476"
         android:textSize="15dp"
         android:textColor="#000000"
         android:padding="10dp"

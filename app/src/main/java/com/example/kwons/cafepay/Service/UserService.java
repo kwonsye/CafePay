@@ -1,14 +1,15 @@
-package com.example.kwons.cafepay;
+package com.example.kwons.cafepay.Service;
+
+import com.example.kwons.cafepay.LoginUser;
+import com.example.kwons.cafepay.SignUpUser;
+import com.example.kwons.cafepay.Users;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
 
 public interface UserService {
 

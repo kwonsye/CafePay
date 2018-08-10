@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.kwons.cafepay.Service.UserService;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,12 +24,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         final TextView userNameText= (TextView) findViewById(R.id.userName);
         TextView couponText= (TextView) findViewById(R.id.couponButton);
         TextView rechargeText= (TextView) findViewById(R.id.rechargeButton);
         TextView paidText= (TextView) findViewById(R.id.paidButton);
         TextView recommendText= (TextView) findViewById(R.id.recommendButton);
         Button tumblerRegisterButton= (Button) findViewById(R.id.tumblerRegisterButton);
+
 
         //로그인액티비티에서 유저아이디 받아오기
         Intent fromLoginIntent=getIntent();
@@ -68,40 +72,42 @@ public class MainActivity extends AppCompatActivity {
                 Intent toCouponIntent=new Intent(MainActivity.this,CouponActivity.class);
                 toCouponIntent.putExtra("userId",userId);
                 MainActivity.this.startActivity(toCouponIntent);
-
             }
         });
-        rechargeText.setOnClickListener(new Button.OnClickListener(){
+        rechargeText.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
+                Intent rechargeIntent = new Intent(MainActivity.this, RechargeActivity.class);
+                rechargeIntent.putExtra("userId",userId);
+                MainActivity.this.startActivity(rechargeIntent);
             }
         });
-        paidText.setOnClickListener(new Button.OnClickListener(){
+        paidText.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent paidIntent=new Intent(MainActivity.this,PaidActivity.class);
+                Intent paidIntent = new Intent(MainActivity.this, PaidActivity.class);
                 MainActivity.this.startActivity(paidIntent);
 
             }
         });
-        recommendText.setOnClickListener(new Button.OnClickListener(){
+        recommendText.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent recommendIntent=new Intent(MainActivity.this,RecommendActivity.class);
+                Intent recommendIntent = new Intent(MainActivity.this, RecommendActivity.class);
                 MainActivity.this.startActivity(recommendIntent);
 
             }
         });
 
-        tumblerRegisterButton.setOnClickListener(new Button.OnClickListener(){
+        tumblerRegisterButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent tumblerRegisterIntent=new Intent(MainActivity.this,TumblerRegisterActivity.class);
+                Intent tumblerRegisterIntent = new Intent(MainActivity.this, TumblerRegisterActivity.class);
+                tumblerRegisterIntent.putExtra("userId",userId);
                 MainActivity.this.startActivity(tumblerRegisterIntent);
 
             }

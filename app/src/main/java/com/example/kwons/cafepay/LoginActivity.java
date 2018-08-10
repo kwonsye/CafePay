@@ -11,15 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.example.kwons.cafepay.Service.UserService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
