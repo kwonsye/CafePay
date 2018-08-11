@@ -4,88 +4,64 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
-import com.example.kwons.cafepay.Service.UserService;
+import com.example.kwons.cafepay.Service.RecommendService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.example.kwons.cafepay.R.drawable;
 import static com.example.kwons.cafepay.R.id;
 import static com.example.kwons.cafepay.R.layout;
 
 public class RecommendActivity extends AppCompatActivity {
 
-    private ListView myPreferListView;
-    private ListView myAgeGroupPreferListView;
-    private PreferListAdapter adapter;
-    private List<Prefer> preferList;
-
+    private ListView recommendListView;
+    private RecommendListAdapter adapter;
+    private List<Recommend> recommendArrayList;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_recommend);
 
+        Intent fromLoginIntent = getIntent();
+        userId = fromLoginIntent.getExtras().getString("userId");
 
-        //1.사용자의 선호도 리스트뷰
+        if (userId == null) {
+            Log.d("Intent Error", "userId = null");
+        }
 
-        myPreferListView = (ListView) findViewById(id.myPreferListView);
-        preferList = new ArrayList<Prefer>();
+        recommendListView = findViewById(id.recommendListView);
+        recommendArrayList = new ArrayList<>();
+        getRecommendList();
+    }
 
-       /* final LiView scrollView = (ScrollView) findViewById(id.scrollVIew);
-        myPreferListView.setOnTouchListener(new View.OnTouchListener() {
+    private void getRecommendList() {
+
+        RecommendService recommendService = RetrofitClient.getClient().create(RecommendService.class);
+
+        Call<List<Recommend>> callTumblerService = recommendService.recommend(userId);
+
+        callTumblerService.enqueue(new Callback<List<Recommend>>() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                scrollView.requestDisallowInterceptTouchEvent(true);
-                return false;
+            public void onResponse(Call<List<Recommend>> call, retrofit2.Response<List<Recommend>> response) {
+                if (call.isExecuted()) {
+                    List<Recommend> responseList = response.body();
+                    if (responseList != null)
+                        recommendArrayList.addAll(responseList);
+                    adapter = new RecommendListAdapter(getApplicationContext(), recommendArrayList);
+                    recommendListView.setAdapter(adapter);
+                }
             }
-        });*/
 
-
-        //디비연동전 예시데이터
-
-        preferList.add(new Prefer(drawable.prefer_example_img, "스타벅스", "아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img, "스타벅스", "아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img, "스타벅스", "아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img, "스타벅스", "아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img, "스타벅스", "아이스 아메리카노"));
-
-        adapter = new PreferListAdapter(getApplicationContext(), preferList);
-        myPreferListView.setAdapter(adapter);
-
-        /*2.같은 나이대+같은 성별의 선호도 리스트뷰
-        myAgeGroupPreferListView=(ListView)findViewById(id.myAgeGroupPreferListView);
-       preferList=new ArrayList<Prefer>();
-
-        myAgeGroupPreferListView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                scrollView.requestDisallowInterceptTouchEvent(true);
-                return false;
+            public void onFailure(Call<List<Recommend>> call, Throwable t) {
+                Log.d("Error ", t.getMessage());
+                call.cancel();
             }
         });
-
-        //디비연동전 예시데이터
-
-        preferList.add(new Prefer(drawable.prefer_example_img,"스타벅스","아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img,"스타벅스","아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img,"스타벅스","아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img,"스타벅스","아이스 아메리카노"));
-        preferList.add(new Prefer(drawable.prefer_example_img,"스타벅스","아이스 아메리카노"));
-
-        adapter=new PreferListAdapter(getApplicationContext(),preferList);
-        myAgeGroupPreferListView.setAdapter(adapter);
-
-
-    }*/
     }
 }

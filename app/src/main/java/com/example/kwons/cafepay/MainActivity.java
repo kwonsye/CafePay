@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         final TextView userNameText= (TextView) findViewById(R.id.userName);
         final String[] userName = new String[1];
         TextView couponText= (TextView) findViewById(R.id.couponButton);
@@ -96,12 +95,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        couponText.setOnClickListener(new Button.OnClickListener(){
+        couponText.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent toCouponIntent=new Intent(MainActivity.this,CouponActivity.class);
-                toCouponIntent.putExtra("userId",userId);
+                Intent toCouponIntent = new Intent(MainActivity.this, CouponActivity.class);
+                toCouponIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(toCouponIntent);
             }
         });
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent rechargeIntent = new Intent(MainActivity.this, RechargeActivity.class);
-                rechargeIntent.putExtra("userId",userId);
+                rechargeIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(rechargeIntent);
             }
         });
@@ -119,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent paidIntent = new Intent(MainActivity.this, PaidActivity.class);
+                paidIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(paidIntent);
 
             }
@@ -128,9 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent recommendIntent = new Intent(MainActivity.this, RecommendActivity.class);
-                //유저이름 넘기기
-                recommendIntent.putExtra("userId",userId);
-
+                recommendIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(recommendIntent);
 
             }
@@ -141,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent tumblerRegisterIntent = new Intent(MainActivity.this, TumblerRegisterActivity.class);
-                tumblerRegisterIntent.putExtra("userId",userId);
+                tumblerRegisterIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(tumblerRegisterIntent);
 
             }
