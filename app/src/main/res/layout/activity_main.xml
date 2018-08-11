@@ -95,19 +95,16 @@
                     android:textColor="#ffffff"
                     android:textSize="12dp" />
 
-                <Button
+                <ImageView
                     android:id="@+id/enviromentButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="190dp"
+                    android:layout_marginRight="10dp"
+
                     android:layout_weight="1"
-                    android:background="@drawable/buttonshape"
-                    android:text="환경생각"
-                    android:textColor="#ffffff"
-                    android:textSize="12dp" />
+                    android:src="@drawable/if_recycling" />
             </LinearLayout>
 
 

@@ -13,4 +13,5 @@ public interface EvaluateByCafeMenuService {
     @POST("payments/evaluate/{userId}/{paymentId}")
     Call<JSONObject> evaluateByCafeMenuService(@Path("userId") String userId, @Path("paymentId") Integer paymentId, @Body Float value);
 
+
 }

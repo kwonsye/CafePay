@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         TextView paidText= (TextView) findViewById(R.id.paidButton);
         TextView recommendText= (TextView) findViewById(R.id.recommendButton);
         Button tumblerRegisterButton= (Button) findViewById(R.id.tumblerRegisterButton);
-        Button enviromentButton= (Button) findViewById(R.id.enviromentButton);
+        final Button enviromentButton= (Button) findViewById(R.id.enviromentButton);
         final TextView pointText=(TextView)findViewById(R.id.pointText);
 
         //로그인액티비티에서 유저아이디 받아오기
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent enviromentIntent = new Intent(MainActivity.this, EnviromentActivity.class);
+                enviromentIntent.putExtra("userId",userId);
                 MainActivity.this.startActivity(enviromentIntent);
 
             }

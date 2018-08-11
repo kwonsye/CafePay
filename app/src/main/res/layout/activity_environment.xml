@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="환경"
+            android:text="지켜진 자연"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="18dp"
@@ -63,6 +63,15 @@
             android:src="@drawable/coffee_cup" />
 
         <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/imageView6"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="210dp"
+            android:src="@drawable/if_Ecology_recycle_recyclingwaste_2992441" />
+
+        <ImageView
             android:id="@+id/imageView5"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -82,34 +91,36 @@
             android:src="@drawable/coins" />
 
         <TextView
-            android:id="@+id/coffecup"
+            android:id="@+id/saveCup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="57dp"
-            android:text="200"
+            android:text="200개"
             android:textColor="#000000"
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/saveTree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/imageView4"
             android:layout_alignStart="@+id/imageView5"
             android:layout_marginStart="38dp"
-            android:text="13"
+            android:text="13그루"
             android:textColor="#000000"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/coin"
+            android:id="@+id/saveCoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/imageView4"
-            android:layout_alignStart="@+id/imageView4"
-            android:layout_marginStart="38dp"
-            android:text="100"
+            android:layout_above="@+id/imageView5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="-92dp"
+            android:layout_marginEnd="35dp"
+            android:text="30000원"
             android:textColor="#000000"
             android:textSize="20sp" />
     </RelativeLayout>
