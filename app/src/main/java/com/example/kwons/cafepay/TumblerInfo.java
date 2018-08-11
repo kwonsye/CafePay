@@ -13,6 +13,10 @@ public class TumblerInfo {
     private String createAt;
     private String updateAt;
 
+    TumblerInfo(int id, String serial){
+        this.id = id;
+        this.serial = serial;
+    }
     public int getId() {
         return id;
     }
