@@ -49,7 +49,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/myPreferText"
-                android:text="수연"
+                android:text="CafePay 이용자"
                 android:textStyle="bold"
                 android:textColor="#FFA653F4"
                 android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 android:layout_marginRight="2dp">
             </TextView>
             <TextView
-                android:text="님이 선호하는 메뉴입니다."
+                android:text="들이 선호하는 메뉴입니다."
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_marginRight="10dp"

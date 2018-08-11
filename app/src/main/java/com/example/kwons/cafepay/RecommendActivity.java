@@ -35,37 +35,6 @@ public class RecommendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_recommend);
 
-        //유저아이디받아오기
-        Intent fromMainIntent=getIntent();
-        final String userId=fromMainIntent.getExtras().getString("userId");
-
-        /**아이디에 해당하는 유저의 이름받아오기*/
-        final TextView myPreferTextId=(TextView) findViewById(id.myPreferText);
-        UserService userService = RetrofitClient.getClient().create(UserService.class);
-        Call<List<Users>> call=userService.getAllUserList();
-        call.enqueue(new Callback<List<Users>>() {
-            @Override
-            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
-                if(response.isSuccessful()) {
-                    List<Users> users = response.body();
-                    for (Users user : users) {
-                        if (user.id.toString().equals(userId)) {
-                            myPreferTextId.setText(user.name.toString());
-                            return;
-                        }
-                    }
-                }
-                else{
-                    int statusCode=response.code();
-                    Log.i("Recommend액티비티","응답코드:"+statusCode);}
-            }
-
-            @Override
-            public void onFailure(Call<List<Users>> call, Throwable t) {
-                /**요청실패*/
-                Log.i("Recommend액티비티", "통신에러");
-            }
-        });
 
         //1.사용자의 선호도 리스트뷰
 
