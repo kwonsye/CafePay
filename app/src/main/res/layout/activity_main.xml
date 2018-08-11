@@ -76,18 +76,39 @@
                     android:textSize="50dp" />
             </FrameLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/tumblerRegisterButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonshape"
                     android:text="텀블러 등록하기"
-                    android:layout_marginBottom="10dp"
                     android:textColor="#ffffff"
-                    android:textSize="12dp"
-                    android:background="@drawable/buttonshape"/>
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/enviromentButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonshape"
+                    android:text="환경생각"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
+            </LinearLayout>
 
 
         </LinearLayout>
