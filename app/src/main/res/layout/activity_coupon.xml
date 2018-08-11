@@ -250,15 +250,22 @@
 
     </LinearLayout>
 
-    <Button
+    <LinearLayout
         android:id="@+id/myFullCouponButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="나의 쿠폰 보관함"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/buttonshape"
-        android:padding="10dp"
-        android:textColor="#ffffff"/>
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/filled_circle">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="13dp"
+            android:src="@drawable/wallet"
+            android:padding="0dp"/>
+
+    </LinearLayout>
+
 </LinearLayout>

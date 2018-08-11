@@ -3,10 +3,12 @@ package com.example.kwons.cafepay;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.style.LeadingMarginSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.kwons.cafepay.Service.CouponService;
 
@@ -282,7 +284,7 @@ public class CouponActivity extends AppCompatActivity {
 
 
 
-        Button myFullCouponButton= (Button) findViewById(R.id.myFullCouponButton);
+        LinearLayout myFullCouponButton= (LinearLayout) findViewById(R.id.myFullCouponButton);
 
         myFullCouponButton.setOnClickListener(new Button.OnClickListener(){
 
