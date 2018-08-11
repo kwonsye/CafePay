@@ -99,11 +99,13 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:background="#e6e6e6">
+                android:background="#e6e6e6"
+                android:padding="1dp">
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_weight="1">
+
                     <Button
                         android:id="@+id/couponButton"
                         android:layout_margin="1dp"
@@ -116,9 +118,12 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_couponicon"
-                        android:drawableLeft="@drawable/ic_couponicon">
+                        android:drawableLeft="@drawable/ic_couponicon"
+                        android:drawableStart="@drawable/ic_couponicon">
+
                     </Button>
+
+
 
                     <Button
                         android:id="@+id/rechargeButton"

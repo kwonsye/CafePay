@@ -13,7 +13,6 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-
 import static com.example.kwons.cafepay.R.id;
 import static com.example.kwons.cafepay.R.layout;
 
@@ -23,7 +22,6 @@ public class RecommendActivity extends AppCompatActivity {
     private RecommendListAdapter adapter;
     private List<Recommend> recommendArrayList;
     private String userId;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,6 @@ public class RecommendActivity extends AppCompatActivity {
 
         recommendListView = findViewById(id.recommendListView);
         recommendArrayList = new ArrayList<>();
-
         getRecommendList();
     }
 

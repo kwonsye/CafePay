@@ -3,10 +3,12 @@ package com.example.kwons.cafepay;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.style.LeadingMarginSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.kwons.cafepay.Service.CouponService;
 
@@ -30,7 +32,7 @@ public class CouponActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coupon);
 
         //Retrofit
-        couponService=RetrofitClient.getClient().create(CouponService.class);
+        couponService = RetrofitClient.getClient().create(CouponService.class);
 
         //메인액티비티에서 사용자아이디 받기
         Intent fromMainIntent = getIntent();
@@ -38,33 +40,42 @@ public class CouponActivity extends AppCompatActivity {
 
 
         //스타벅스버튼을 눌렀을때
-        final ImageView starbucksCouponButton= (ImageView) findViewById(R.id.starbucksCouponButton);
+        final ImageView starbucksCouponButton = (ImageView) findViewById(R.id.starbucksCouponButton);
         starbucksCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Stamp> call=couponService.getStampCount(userId);
+                Call<Stamp> call = couponService.getStampCount(userId);
                 call.enqueue(new Callback<Stamp>() {   //서버로부터 스탬프 개수 받아서
                     @Override
                     public void onResponse(Call<Stamp> call, Response<Stamp> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             try {
 
-                                int starbucksStampCount =(int) response.body().starbucksStampCount;
-                                starbucksCouponCount=starbucksStampCount/10;
+                                int starbucksStampCount = (int) response.body().starbucksStampCount;
+                                starbucksCouponCount = starbucksStampCount / 10;
 
-                                for (int stampCount = 1; stampCount <= starbucksStampCount%10; stampCount++) {
+                                for (int stampCount = 1; stampCount <= 10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
-                                    ImageView Img = (ImageView)findViewById(id);
+                                    ImageView Img = (ImageView) findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
+                                for (int stampCount = 1; stampCount <= starbucksStampCount % 10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView) findViewById(id);
 
                                     Img.setImageResource(R.drawable.starbucks_icon);    //출력
                                 }
 
 
-                            } catch (Exception e) { e.printStackTrace(); }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            int statusCode = response.code();
+                            Log.i("Coupon액티비티", "응답코드:" + statusCode);
                         }
-                        else{
-                            int statusCode=response.code();
-                            Log.i("Coupon액티비티","응답코드:"+statusCode);}
 
                     }
 
@@ -81,32 +92,42 @@ public class CouponActivity extends AppCompatActivity {
         starbucksCouponButton.performClick();
 
         //이디야버튼을 눌렀을때
-        ImageView ediyaCouponButton= (ImageView) findViewById(R.id.ediyaCouponButton);
+        ImageView ediyaCouponButton = (ImageView) findViewById(R.id.ediyaCouponButton);
         ediyaCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Stamp> call=couponService.getStampCount(userId);
+                Call<Stamp> call = couponService.getStampCount(userId);
                 call.enqueue(new Callback<Stamp>() {   //서버로부터 스탬프 개수 받아서
                     @Override
                     public void onResponse(Call<Stamp> call, Response<Stamp> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             try {
 
-                                int ediyaStampCount = (int)response.body().ediyaStampCount;
-                                ediyaCouponCount=ediyaStampCount/10;
+                                int ediyaStampCount = (int) response.body().ediyaStampCount;
+                                ediyaCouponCount = ediyaStampCount / 10;
 
-                                for (int stampCount = 1; stampCount <= ediyaStampCount%10; stampCount++) {
+                                for (int stampCount = 1; stampCount <= 10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
-                                    ImageView Img = (ImageView)findViewById(id);
+                                    ImageView Img = (ImageView) findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
+
+                                for (int stampCount = 1; stampCount <= ediyaStampCount % 10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView) findViewById(id);
 
                                     Img.setImageResource(R.drawable.ediya_icon);    //출력
                                 }
 
-                            } catch (Exception e) { e.printStackTrace(); }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            int statusCode = response.code();
+                            Log.i("Tag", "응답코드:" + statusCode);
                         }
-                        else{
-                            int statusCode=response.code();
-                            Log.i("Tag","응답코드:"+statusCode);}
 
                     }
 
@@ -120,32 +141,42 @@ public class CouponActivity extends AppCompatActivity {
         });
 
         //할리스버튼을 눌렀을때
-        ImageView hollysCouponButton= (ImageView) findViewById(R.id.hollysCouponButton);
+        ImageView hollysCouponButton = (ImageView) findViewById(R.id.hollysCouponButton);
         hollysCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Stamp> call=couponService.getStampCount(userId);
+                Call<Stamp> call = couponService.getStampCount(userId);
                 call.enqueue(new Callback<Stamp>() {   //서버로부터 스탬프 개수 받아서
                     @Override
                     public void onResponse(Call<Stamp> call, Response<Stamp> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             try {
 
-                                int hollysStampCount = (int)response.body().hollysStampCount;
-                                hollysCouponCount=hollysStampCount/10;
+                                int hollysStampCount = (int) response.body().hollysStampCount;
+                                hollysCouponCount = hollysStampCount / 10;
 
-                                for (int stampCount = 1; stampCount <= hollysStampCount%10; stampCount++) {
+                                for (int stampCount = 1; stampCount <= 10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
-                                    ImageView Img = (ImageView)findViewById(id);
+                                    ImageView Img = (ImageView) findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
+
+                                for (int stampCount = 1; stampCount <= hollysStampCount % 10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView) findViewById(id);
 
                                     Img.setImageResource(R.drawable.hollys_icon);    //출력
                                 }
 
-                            } catch (Exception e) { e.printStackTrace(); }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            int statusCode = response.code();
+                            Log.i("Tag", "응답코드:" + statusCode);
                         }
-                        else{
-                            int statusCode=response.code();
-                            Log.i("Tag","응답코드:"+statusCode);}
 
                     }
 
@@ -159,32 +190,42 @@ public class CouponActivity extends AppCompatActivity {
         });
 
         //엔젤리너스버튼을 눌렀을때
-        ImageView angelinusCouponButton= (ImageView) findViewById(R.id.angelinusCouponButton);
+        ImageView angelinusCouponButton = (ImageView) findViewById(R.id.angelinusCouponButton);
         angelinusCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Stamp> call=couponService.getStampCount(userId);
+                Call<Stamp> call = couponService.getStampCount(userId);
                 call.enqueue(new Callback<Stamp>() {   //서버로부터 스탬프 개수 받아서
                     @Override
                     public void onResponse(Call<Stamp> call, Response<Stamp> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             try {
 
-                                int angelinusStampCount = (int)response.body().angelinusStampCount;
-                                angelinusCouponCount=angelinusStampCount/10;
+                                int angelinusStampCount = (int) response.body().angelinusStampCount;
+                                angelinusCouponCount = angelinusStampCount / 10;
 
-                                for (int stampCount = 1; stampCount <= angelinusStampCount%10; stampCount++) {
+                                for (int stampCount = 1; stampCount <= 10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
-                                    ImageView Img = (ImageView)findViewById(id);
+                                    ImageView Img = (ImageView) findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
+
+                                for (int stampCount = 1; stampCount <= angelinusStampCount % 10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView) findViewById(id);
 
                                     Img.setImageResource(R.drawable.angelinus_icon);    //출력
                                 }
 
-                            } catch (Exception e) { e.printStackTrace(); }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            int statusCode = response.code();
+                            Log.i("Tag", "응답코드:" + statusCode);
                         }
-                        else{
-                            int statusCode=response.code();
-                            Log.i("Tag","응답코드:"+statusCode);}
 
                     }
 
@@ -199,32 +240,42 @@ public class CouponActivity extends AppCompatActivity {
         });
 
         //탐앤탐즈버튼을 눌렀을때
-        ImageView tomntomsCouponButton= (ImageView) findViewById(R.id.tomntomsCouponButton);
+        ImageView tomntomsCouponButton = (ImageView) findViewById(R.id.tomntomsCouponButton);
         tomntomsCouponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Call<Stamp> call=couponService.getStampCount(userId);
+                Call<Stamp> call = couponService.getStampCount(userId);
                 call.enqueue(new Callback<Stamp>() {   //서버로부터 스탬프 개수 받아서
                     @Override
                     public void onResponse(Call<Stamp> call, Response<Stamp> response) {
-                        if(response.isSuccessful()) {
+                        if (response.isSuccessful()) {
                             try {
 
-                                int tomntomsStampCount = (int)response.body().tomntomsStampCount;
-                                tomntomsCouponCount=tomntomsStampCount/10;
+                                int tomntomsStampCount = (int) response.body().tomntomsStampCount;
+                                tomntomsCouponCount = tomntomsStampCount / 10;
 
-                                for (int stampCount = 1; stampCount <= tomntomsStampCount%10; stampCount++) {
+                                for (int stampCount = 1; stampCount <= 10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
-                                    ImageView Img = (ImageView)findViewById(id);
+                                    ImageView Img = (ImageView) findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
+
+                                for (int stampCount = 1; stampCount <= tomntomsStampCount % 10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView) findViewById(id);
 
                                     Img.setImageResource(R.drawable.tomntoms_icon);    //출력
                                 }
 
-                            } catch (Exception e) { e.printStackTrace(); }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            int statusCode = response.code();
+                            Log.i("Tag", "응답코드:" + statusCode);
                         }
-                        else{
-                            int statusCode=response.code();
-                            Log.i("Tag","응답코드:"+statusCode);}
 
                     }
 
@@ -239,24 +290,19 @@ public class CouponActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-        Button myFullCouponButton= (Button) findViewById(R.id.myFullCouponButton);
-
-        myFullCouponButton.setOnClickListener(new Button.OnClickListener(){
+        LinearLayout myFullCouponButton = (LinearLayout) findViewById(R.id.myFullCouponButton);
+        myFullCouponButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(CouponActivity.this,MyFullCouponActivity.class);
+                Intent intent = new Intent(CouponActivity.this, MyFullCouponActivity.class);
                 //intent.putExtra("userId", userId);
 
-                intent.putExtra("myStarbucksCoupon",starbucksCouponCount);
-                intent.putExtra("myEdiyaCoupon",ediyaCouponCount);
-                intent.putExtra("myHollysCoupon",hollysCouponCount);
-                intent.putExtra("myAngelinusCoupon",angelinusCouponCount);
-                intent.putExtra("myTomnTomsCoupon",tomntomsCouponCount);
+                intent.putExtra("myStarbucksCoupon", starbucksCouponCount);
+                intent.putExtra("myEdiyaCoupon", ediyaCouponCount);
+                intent.putExtra("myHollysCoupon", hollysCouponCount);
+                intent.putExtra("myAngelinusCoupon", angelinusCouponCount);
+                intent.putExtra("myTomnTomsCoupon", tomntomsCouponCount);
 
                 startActivity(intent);
             }
