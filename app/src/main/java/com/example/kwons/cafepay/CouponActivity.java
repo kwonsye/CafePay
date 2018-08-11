@@ -52,6 +52,13 @@ public class CouponActivity extends AppCompatActivity {
                                 int starbucksStampCount =(int) response.body().starbucksStampCount;
                                 starbucksCouponCount=starbucksStampCount/10;
 
+                                for (int stampCount = 1; stampCount <=10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView)findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
                                 for (int stampCount = 1; stampCount <= starbucksStampCount%10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
                                     ImageView Img = (ImageView)findViewById(id);
@@ -95,6 +102,14 @@ public class CouponActivity extends AppCompatActivity {
                                 int ediyaStampCount = (int)response.body().ediyaStampCount;
                                 ediyaCouponCount=ediyaStampCount/10;
 
+                                for (int stampCount = 1; stampCount <=10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView)findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
+
                                 for (int stampCount = 1; stampCount <= ediyaStampCount%10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
                                     ImageView Img = (ImageView)findViewById(id);
@@ -133,6 +148,14 @@ public class CouponActivity extends AppCompatActivity {
 
                                 int hollysStampCount = (int)response.body().hollysStampCount;
                                 hollysCouponCount=hollysStampCount/10;
+
+                                for (int stampCount = 1; stampCount <=10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView)findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
 
                                 for (int stampCount = 1; stampCount <= hollysStampCount%10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
@@ -173,6 +196,14 @@ public class CouponActivity extends AppCompatActivity {
                                 int angelinusStampCount = (int)response.body().angelinusStampCount;
                                 angelinusCouponCount=angelinusStampCount/10;
 
+                                for (int stampCount = 1; stampCount <=10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView)findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
+
                                 for (int stampCount = 1; stampCount <= angelinusStampCount%10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
                                     ImageView Img = (ImageView)findViewById(id);
@@ -212,6 +243,14 @@ public class CouponActivity extends AppCompatActivity {
 
                                 int tomntomsStampCount = (int)response.body().tomntomsStampCount;
                                 tomntomsCouponCount=tomntomsStampCount/10;
+
+                                for (int stampCount = 1; stampCount <=10; stampCount++) {
+                                    int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
+                                    ImageView Img = (ImageView)findViewById(id);
+
+                                    Img.setImageResource(R.drawable.empty_coupon);    //출력
+                                }
+
 
                                 for (int stampCount = 1; stampCount <= tomntomsStampCount%10; stampCount++) {
                                     int id = getApplicationContext().getResources().getIdentifier("coupon" + stampCount, "id", getApplicationContext().getPackageName());
