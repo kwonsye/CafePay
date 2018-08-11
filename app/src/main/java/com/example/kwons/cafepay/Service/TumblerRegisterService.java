@@ -1,6 +1,7 @@
 package com.example.kwons.cafepay.Service;
 
 import com.example.kwons.cafepay.TumblerInfo;
+import com.example.kwons.cafepay.TumblerRegister;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,7 +19,7 @@ import retrofit2.http.Path;
 public interface TumblerRegisterService {
 
     @POST("tumblers")
-    Call<JSONObject> registerTumblerSerialNumber(@Body JSONObject registerTumbler);
+    Call<JSONObject> registerTumblerSerialNumber(@Body TumblerRegister registerTumbler);
 
 
     //1.결제내역 조회

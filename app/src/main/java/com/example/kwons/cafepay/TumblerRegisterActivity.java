@@ -10,6 +10,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -55,27 +57,21 @@ public class TumblerRegisterActivity extends AppCompatActivity {
                 scanQRCode();
             }
         });
-//        generateQRcodeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                createDialog();
-//            }
-//        });
         tumblerInfoArrayList = new ArrayList<>();
         tumblerList = findViewById(R.id.tumblerListView);
 
         Intent fromLoginIntent = getIntent();
         userId = fromLoginIntent.getExtras().getString("userId");
 
-        if(userId == null){
-            Log.d("Intent Error" , "userId = null");
+        if (userId == null) {
+            Log.d("Intent Error", "userId = null");
         }
 
         getTumblerInfoList();
 
     }
 
-    private void getTumblerInfoList(){
+    private void getTumblerInfoList() {
 
         tumblerRegisterService = RetrofitClient.getClient().create(TumblerRegisterService.class);
 
@@ -101,7 +97,6 @@ public class TumblerRegisterActivity extends AppCompatActivity {
     }
 
 
-
     public void scanQRCode() {
         new IntentIntegrator(this).initiateScan();
     }
@@ -115,21 +110,18 @@ public class TumblerRegisterActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 serial = result.getContents();
-                //Retrofit
-                JSONObject tumblerInfo = new JSONObject();
-                try {
-                    tumblerInfo.put("serial", serial);
-                    tumblerInfo.put("userId", userId);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Call<JSONObject> callTumblerService = tumblerRegisterService.registerTumblerSerialNumber(tumblerInfo);
+                Call<JSONObject> callTumblerService = tumblerRegisterService.registerTumblerSerialNumber(new TumblerRegister(serial,userId));
 
                 callTumblerService.enqueue(new Callback<JSONObject>() {
                     @Override
                     public void onResponse(Call<JSONObject> call, retrofit2.Response<JSONObject> response) {
-                        if (call.isExecuted()) {
-                            Toast.makeText(TumblerRegisterActivity.this, "등록성공", Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+                            if (response.code() == 200) {
+                                Toast.makeText(TumblerRegisterActivity.this, "등록성공", Toast.LENGTH_SHORT).show();
+                                getTumblerInfoList();
+                            }
+                        } else {
+                            Log.d("Register", "Error Register");
                         }
                     }
 
@@ -137,7 +129,6 @@ public class TumblerRegisterActivity extends AppCompatActivity {
                     public void onFailure(Call<JSONObject> call, Throwable t) {
                         Log.d("Error ", t.getMessage());
                         call.cancel();
-
                     }
                 });
             }
@@ -145,12 +136,13 @@ public class TumblerRegisterActivity extends AppCompatActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (Build.VERSION.SDK_INT >= 23) {
-            if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]);
                 //resume tasks needing this permission
             }
         }
