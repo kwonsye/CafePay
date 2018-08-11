@@ -7,7 +7,8 @@ public class RetrofitClient {
 
     private static Retrofit retrofit = null;
 
-    public static final String API_URL="http://phil6641.cafe24.com:9287/";
+    //public static final String API_URL="http://phil6641.cafe24.com:9287/";
+    public static final String API_URL="http://lottehotel.koreacentral.cloudapp.azure.com:9287/";
 
     public static Retrofit getClient() {
         if (retrofit==null) {
