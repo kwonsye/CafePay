@@ -23,25 +23,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView userNameText=findViewById(R.id.userName);
-        TextView couponText=findViewById(R.id.couponButton);
-        TextView rechargeText=findViewById(R.id.rechargeButton);
-        TextView paidText=findViewById(R.id.paidButton);
-        TextView recommendText=findViewById(R.id.recommendButton);
-        Button tumblerRegisterButton=findViewById(R.id.tumblerRegisterButton);
+        final TextView userNameText = findViewById(R.id.userName);
+        TextView couponText = findViewById(R.id.couponButton);
+        TextView rechargeText = findViewById(R.id.rechargeButton);
+        TextView paidText = findViewById(R.id.paidButton);
+        TextView recommendText = findViewById(R.id.evaluateButton);
+        Button tumblerRegisterButton = findViewById(R.id.tumblerRegisterButton);
 
         //로그인액티비티에서 유저아이디 받아오기
-        Intent fromLoginIntent=getIntent();
-        final String userId=fromLoginIntent.getExtras().getString("userId");
+        Intent fromLoginIntent = getIntent();
+        final String userId = fromLoginIntent.getExtras().getString("userId");
 
 
         /**아이디에 해당하는 유저의 이름받아오기*/
-        userService=RetrofitClient.getClient().create(UserService.class);
-        Call<List<Users>> call=userService.getAllUserList();
+        userService = RetrofitClient.getClient().create(UserService.class);
+        Call<List<Users>> call = userService.getAllUserList();
         call.enqueue(new Callback<List<Users>>() {
             @Override
             public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     List<Users> users = response.body();
                     for (Users user : users) {
                         if (user.id.toString().equals(userId)) {
@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                     }
+                } else {
+                    int statusCode = response.code();
+                    Log.i("Main액티비티", "응답코드:" + statusCode);
                 }
-                else{
-                    int statusCode=response.code();
-                    Log.i("Main액티비티","응답코드:"+statusCode);}
             }
 
             @Override
@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        couponText.setOnClickListener(new Button.OnClickListener(){
+        couponText.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent toCouponIntent=new Intent(MainActivity.this,CouponActivity.class);
-                toCouponIntent.putExtra("userId",userId);
+                Intent toCouponIntent = new Intent(MainActivity.this, CouponActivity.class);
+                toCouponIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(toCouponIntent);
             }
         });
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent rechargeIntent = new Intent(MainActivity.this, RechargeActivity.class);
-                rechargeIntent.putExtra("userId",userId);
+                rechargeIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(rechargeIntent);
             }
         });
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent paidIntent = new Intent(MainActivity.this, PaidActivity.class);
+                paidIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(paidIntent);
 
             }
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent recommendIntent = new Intent(MainActivity.this, RecommendActivity.class);
+                recommendIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(recommendIntent);
 
             }
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent tumblerRegisterIntent = new Intent(MainActivity.this, TumblerRegisterActivity.class);
-                tumblerRegisterIntent.putExtra("userId",userId);
+                tumblerRegisterIntent.putExtra("userId", userId);
                 MainActivity.this.startActivity(tumblerRegisterIntent);
 
             }

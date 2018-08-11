@@ -7,6 +7,8 @@ public class Paid {
     String paidCafeName;
     String paidPrice;
     String paidMenu;
+
+
     public Paid(String paidLocation, String paidCafeName, String paidPrice, String paidMenu) {
         this.paidLocation = paidLocation;
         this.paidCafeName = paidCafeName;
