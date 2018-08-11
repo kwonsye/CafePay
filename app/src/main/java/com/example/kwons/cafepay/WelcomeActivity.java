@@ -33,8 +33,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
         }
 
-        Button loginButton=findViewById(R.id.WelcomeloginButton);
-        Button rigisterButton=findViewById(R.id.WelcomeregisterButton);
+        Button loginButton= (Button) findViewById(R.id.WelcomeloginButton);
+        Button rigisterButton= (Button) findViewById(R.id.WelcomeregisterButton);
 
         loginButton.setOnClickListener(new Button.OnClickListener(){
 

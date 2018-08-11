@@ -66,7 +66,7 @@
             </FrameLayout>
 
                 <TextView
-                    android:id="@+id/money"
+                    android:id="@+id/pointText"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_gravity="right"
@@ -157,21 +157,21 @@
                         android:drawableStart="@drawable/ic_paidicon"
                         android:drawableLeft="@drawable/ic_paidicon">
                     </Button>
+
                     <Button
-                        android:id="@+id/evaluateButton"
-                        android:layout_margin="1dp"
-                        android:text="추천메뉴"
-                        android:layout_weight="1"
+                        android:id="@+id/recommendButton"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="15dp"
-                        android:padding="10dp"
-                        android:textAlignment="center"
-                        android:gravity="center"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
                         android:background="@drawable/ripple_effect"
+                        android:drawableLeft="@drawable/ic_recommendicon"
                         android:drawableStart="@drawable/ic_recommendicon"
-                        android:drawableLeft="@drawable/ic_recommendicon">
-                    </Button>
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="추천메뉴"
+                        android:textAlignment="center"
+                        android:textSize="15dp"></Button>
                 </TableRow>
 
             </TableLayout>

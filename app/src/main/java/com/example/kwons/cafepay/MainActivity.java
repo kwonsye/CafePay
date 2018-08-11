@@ -23,36 +23,70 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView userNameText = findViewById(R.id.userName);
-        TextView couponText = findViewById(R.id.couponButton);
-        TextView rechargeText = findViewById(R.id.rechargeButton);
-        TextView paidText = findViewById(R.id.paidButton);
-        TextView recommendText = findViewById(R.id.evaluateButton);
-        Button tumblerRegisterButton = findViewById(R.id.tumblerRegisterButton);
+
+
+        final TextView userNameText= (TextView) findViewById(R.id.userName);
+        final String[] userName = new String[1];
+        TextView couponText= (TextView) findViewById(R.id.couponButton);
+        TextView rechargeText= (TextView) findViewById(R.id.rechargeButton);
+        TextView paidText= (TextView) findViewById(R.id.paidButton);
+        TextView recommendText= (TextView) findViewById(R.id.recommendButton);
+        Button tumblerRegisterButton= (Button) findViewById(R.id.tumblerRegisterButton);
+        final TextView pointText=(TextView)findViewById(R.id.pointText);
 
         //로그인액티비티에서 유저아이디 받아오기
-        Intent fromLoginIntent = getIntent();
-        final String userId = fromLoginIntent.getExtras().getString("userId");
+        Intent fromLoginIntent=getIntent();
+        final String userId=fromLoginIntent.getExtras().getString("userId");
+        final String[] userPoint = new String[1];
 
-
-        /**아이디에 해당하는 유저의 이름받아오기*/
-        userService = RetrofitClient.getClient().create(UserService.class);
-        Call<List<Users>> call = userService.getAllUserList();
+        /**유저ID의 포인트 받아오기*/
+        userService=RetrofitClient.getClient().create(UserService.class);
+        Call<List<Users>> call=userService.getAllUserList();
         call.enqueue(new Callback<List<Users>>() {
             @Override
             public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
-                if (response.isSuccessful()) {
+                if(response.isSuccessful()) {
                     List<Users> users = response.body();
                     for (Users user : users) {
                         if (user.id.toString().equals(userId)) {
-                            userNameText.setText(user.name.toString() + "님");
+                            userPoint[0] =user.point+"원";
+                            pointText.setText(userPoint[0]);
                             return;
                         }
                     }
-                } else {
-                    int statusCode = response.code();
-                    Log.i("Main액티비티", "응답코드:" + statusCode);
                 }
+                else{
+                    int statusCode=response.code();
+                    Log.i("Main액티비티","응답코드:"+statusCode);}
+            }
+
+            @Override
+            public void onFailure(Call<List<Users>> call, Throwable t) {
+                /**요청실패*/
+                Log.i("Main액티비티", "통신에러");
+            }
+        });
+
+
+        /**아이디에 해당하는 유저의 이름받아오기*/
+        userService=RetrofitClient.getClient().create(UserService.class);
+        Call<List<Users>> call_2=userService.getAllUserList();
+        call_2.enqueue(new Callback<List<Users>>() {
+            @Override
+            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
+                if(response.isSuccessful()) {
+                    List<Users> users = response.body();
+                    for (Users user : users) {
+                        if (user.id.toString().equals(userId)) {
+                            userName[0] =user.name.toString()+"님";
+                            userNameText.setText(userName[0]);
+                            return;
+                        }
+                    }
+                }
+                else{
+                    int statusCode=response.code();
+                    Log.i("Main액티비티","응답코드:"+statusCode);}
             }
 
             @Override
