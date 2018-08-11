@@ -39,6 +39,7 @@
         <activity android:name=".RechargeActivity" />
         <activity android:name=".TumblerRegisterActivity" />
         <activity android:name=".MyFullCouponActivity" />
+        <activity android:name=".EnviromentActivity"/>
     </application>
 
 </manifest>
