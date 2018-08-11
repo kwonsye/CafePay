@@ -36,8 +36,8 @@
 
 
     </LinearLayout>
-<ScrollView
-    android:id="@+id/scrollVIew"
+
+<LinearLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent">
     <LinearLayout android:layout_height="match_parent"
@@ -74,7 +74,7 @@
     <ListView
         android:id="@+id/myPreferListView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:divider="#d1d1d1"
@@ -82,62 +82,8 @@
 
     </ListView>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/myAgePreferText"
-            android:textColor="#FFD548E4"
-            android:text="20"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="2dp">
-        </TextView>
-        <TextView
-            android:text="대"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
-        </TextView>
-        <TextView
-            android:id="@+id/myGenPreferText"
-            android:textColor="#FFD548E4"
-            android:text="여성"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
-        <TextView
-            android:text="이 선호하는 메뉴입니다."
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
-        </TextView>
 
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/myAgeGroupPreferListView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:divider="#d1d1d1"
-        android:dividerHeight="1dp">
-
-    </ListView>
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>
 
 </LinearLayout>

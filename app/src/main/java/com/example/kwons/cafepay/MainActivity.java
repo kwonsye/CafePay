@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final TextView userNameText= (TextView) findViewById(R.id.userName);
+        final String[] userName = new String[1];
         TextView couponText= (TextView) findViewById(R.id.couponButton);
         TextView rechargeText= (TextView) findViewById(R.id.rechargeButton);
         TextView paidText= (TextView) findViewById(R.id.paidButton);
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
                     List<Users> users = response.body();
                     for (Users user : users) {
                         if (user.id.toString().equals(userId)) {
-                            userNameText.setText(user.name.toString() + "님");
+                            userName[0] =user.name.toString()+"님";
+                            userNameText.setText(userName[0]);
                             return;
                         }
                     }
@@ -97,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent recommendIntent = new Intent(MainActivity.this, RecommendActivity.class);
+                //유저이름 넘기기
+                recommendIntent.putExtra("userId",userId);
+
                 MainActivity.this.startActivity(recommendIntent);
 
             }
