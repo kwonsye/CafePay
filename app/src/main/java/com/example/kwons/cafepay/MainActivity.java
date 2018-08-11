@@ -1,11 +1,13 @@
 package com.example.kwons.cafepay;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kwons.cafepay.Service.UserService;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         TextView paidText= (TextView) findViewById(R.id.paidButton);
         TextView recommendText= (TextView) findViewById(R.id.recommendButton);
         Button tumblerRegisterButton= (Button) findViewById(R.id.tumblerRegisterButton);
-        final Button enviromentButton= (Button) findViewById(R.id.enviromentButton);
+        final ImageView environmentButton= (ImageView) findViewById(R.id.enviromentButton);
         final TextView pointText=(TextView)findViewById(R.id.pointText);
 
         //로그인액티비티에서 유저아이디 받아오기
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        enviromentButton.setOnClickListener(new Button.OnClickListener() {
+        environmentButton.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View view) {

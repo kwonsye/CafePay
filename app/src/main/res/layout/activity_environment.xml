@@ -69,7 +69,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="210dp"
-            android:src="@drawable/if_Ecology_recycle_recyclingwaste_2992441" />
+            android:src="@drawable/if_ecology_recycle" />
 
         <ImageView
             android:id="@+id/imageView5"
